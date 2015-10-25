@@ -16,11 +16,16 @@ x <- cBind(config,team,player) # cBind binds together two sparse matrices
 y <- goal$homegoal
 
 nhlreg <- gamlr(x, y, 
-	free=1:(ncol(config)+ncol(team)), ## free denotes unpenalized columns
-	family="binomial", standardize=FALSE)
+	free = 1:(ncol(config)+ncol(team)), ## free denotes unpenalized columns
+	family = "binomial", standardize = FALSE,
+	verb = TRUE)
+
+plot(nhlreg)
 
 ## coefficients (grab only the players)
-# AICc selection 
-Baicc <- coef(nhlreg)[colnames(player),]
+B <- coef(nhlreg)[colnames(player),]
+sum(B!=0) # number of measurable effects (AICc selection)
+B[order(-B)[1:10]] # 10 biggest
 
+plot(log(nhlreg$lambda), AICc(nhlreg))
 
