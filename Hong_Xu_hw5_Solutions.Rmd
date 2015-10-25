@@ -4,6 +4,8 @@ author: "Hong Xu, Individual"
 date: "October 24, 2015"
 output: pdf_document
 ---
+All code can be found in [bitbucket](https://bitbucket.org/hx23/hockey_regression).
+
 ## 0. Prepare the model ##
 ```{r}
 require(xtable)
